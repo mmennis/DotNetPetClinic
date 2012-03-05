@@ -69,6 +69,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OwnerController.cs" />
     <Compile Include="Controllers\PetController.cs" />
+    <Compile Include="Controllers\PetTypeController.cs" />
     <Compile Include="Controllers\VisitController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -203,6 +204,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Visit\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PetType\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PetType\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PetType\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PetType\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PetType\Delete.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -14,6 +14,6 @@ namespace DotNetPetClinic.Models
         public string City { get; set; }
         public string Telephone { get; set; }
 
-        public virtual IEnumerable<Pet> Pets { get; set; }
+        public virtual ICollection<Pet> Pets { get; set; }
     }
 }

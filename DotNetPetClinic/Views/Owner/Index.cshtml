@@ -26,6 +26,9 @@
         <th>
             Telephone
         </th>
+        <th>
+            Pet Names
+        </th>
         <th></th>
     </tr>
 
@@ -45,6 +48,22 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Telephone)
+        </td>
+        <td>
+            @if (item.Pets != null)
+            {
+                <ul>
+                @foreach (DotNetPetClinic.Models.Pet p in item.Pets)
+                {
+                    
+                    <li>@p.Name</li>
+                }
+                </ul>
+            }
+            else 
+            {
+                <b>No Pets found</b>
+            }
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

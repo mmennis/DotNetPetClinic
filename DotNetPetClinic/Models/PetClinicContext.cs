@@ -21,6 +21,7 @@ namespace DotNetPetClinic.Models
         protected override void Seed(PetClinicContext context)
         {
             base.Seed(context);
+            Random rand = new Random();
 
             var types = new string[] { "Cat", "Dog", "Mouse", "Hamster", 
                                        "Gerbil", "Pig", "Goldfish", 
@@ -35,7 +36,7 @@ namespace DotNetPetClinic.Models
             }
             
             List<string> lastNames = new List<string> { "Smith", "Jones", "Johnson", "Williams"};
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 16; i++)
             {
                 lastNames.Add(Faker.NameFaker.LastName());
             }
@@ -43,7 +44,7 @@ namespace DotNetPetClinic.Models
             for (int i = 0; i < 100; i++)
             {
                 Owner o = new Owner {
-                    LastName = lastNames[new Random(i).Next(0, lastNames.Count -1)],
+                    LastName = lastNames[rand.Next(lastNames.Count)],
                     FirstName = Faker.NameFaker.FirstName(),
                     Address = Faker.LocationFaker.Street(),
                     City = Faker.LocationFaker.City(),
@@ -51,12 +52,12 @@ namespace DotNetPetClinic.Models
                 };
                 context.Owners.Add(o);
 
-                int maxPets = new Random().Next(1, 4);
+                int maxPets = rand.Next(1, 4);
                 for (int j = 0; j < maxPets; j++ )
                 {
                     Pet p = new Pet { Name = Faker.NameFaker.FirstName(), BirthDate = Faker.DateTimeFaker.BirthDay(1,5)};
                     p.Owner = o;
-                    p.PetType = petTypes[new Random().Next(0, petTypes.Count - 1)];
+                    p.PetType = petTypes[rand.Next(petTypes.Count)];
                     context.Pets.Add(p);
                 }
             }
