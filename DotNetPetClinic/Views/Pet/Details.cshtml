@@ -1,0 +1,35 @@
+﻿@model DotNetPetClinic.Models.Pet
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Pet</legend>
+
+    <div class="display-label">Name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">BirthDate</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BirthDate)
+    </div>
+
+    <div class="display-label">PetTypeId</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PetTypeId)
+    </div>
+
+    <div class="display-label">OwnerId</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.OwnerId)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
