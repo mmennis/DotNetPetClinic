@@ -1,0 +1,30 @@
+﻿@model DotNetPetClinic.Models.Visit
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Visit</legend>
+
+    <div class="display-label">VisitDate</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.VisitDate)
+    </div>
+
+    <div class="display-label">Description</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">Pet</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Pet.Name)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

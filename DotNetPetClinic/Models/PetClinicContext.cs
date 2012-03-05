@@ -22,13 +22,18 @@ namespace DotNetPetClinic.Models
         {
             base.Seed(context);
 
-            var petTypes = new string[] { "Cat", "Dog", "Mouse", "Hamster", "Gerbil", "Pig" };
+            var types = new string[] { "Cat", "Dog", "Mouse", "Hamster", 
+                                       "Gerbil", "Pig", "Goldfish", 
+                                       "Toucan", "Iguana" };
 
-            PetType cat = new PetType{ Name="Cat" };
-            context.PetTypes.Add(cat);
-            PetType dog = new PetType { Name = "Dog" };
-            context.PetTypes.Add(dog);
-
+            List<PetType> petTypes = new List<PetType>();
+            foreach (string petType in types)
+            {
+                PetType pt = new PetType { Name = petType };
+                petTypes.Add(pt);
+                context.PetTypes.Add(pt);
+            }
+            
             List<string> lastNames = new List<string> { "Smith", "Jones", "Johnson", "Williams"};
             for (int i = 0; i < 20; i++)
             {
@@ -46,13 +51,12 @@ namespace DotNetPetClinic.Models
                 };
                 context.Owners.Add(o);
 
-                int maxPets = new Random(i).Next(1, 4);
+                int maxPets = new Random().Next(1, 4);
                 for (int j = 0; j < maxPets; j++ )
                 {
                     Pet p = new Pet { Name = Faker.NameFaker.FirstName(), BirthDate = Faker.DateTimeFaker.BirthDay(1,5)};
                     p.Owner = o;
-                    p.PetType = cat;
-
+                    p.PetType = petTypes[new Random().Next(0, petTypes.Count - 1)];
                     context.Pets.Add(p);
                 }
             }
