@@ -13,6 +13,11 @@
 ## Installation
  
   * Download the code.
-  * Download the Faker libraries faker.codeplex.com
-  * Open teh project in Visual Studio and add a reference to teh FAker.dll 
+  * Edit the PetClinicContext.cs file under Models to set the number of owners and vets to be created.
+  * Starting up the application should cause the database entities to be created automatikcally.
+  * Edit the Global.asax.xs file to disable the initializer (in the Application_Start method).
+  * Update connection strings if using a SQL Server database.
+
+
+
 
