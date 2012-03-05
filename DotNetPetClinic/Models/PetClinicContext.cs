@@ -22,32 +22,40 @@ namespace DotNetPetClinic.Models
         {
             base.Seed(context);
 
-            var petTypes = new string[] { };
+            var petTypes = new string[] { "Cat", "Dog", "Mouse", "Hamster", "Gerbil", "Pig" };
 
             PetType cat = new PetType{ Name="Cat" };
             context.PetTypes.Add(cat);
             PetType dog = new PetType { Name = "Dog" };
             context.PetTypes.Add(dog);
 
+            List<string> lastNames = new List<string> { "Smith", "Jones", "Johnson", "Williams"};
+            for (int i = 0; i < 20; i++)
+            {
+                lastNames.Add(Faker.NameFaker.LastName());
+            }
 
-            Owner o1 = new Owner { LastName = Faker.NameFaker.LastName() , FirstName = Faker.NameFaker.FirstName(), Address = "1600 Villa St", City = "Mountain View", Telephone = "408-555-1212" };
-            context.Owners.Add(o1);
+            for (int i = 0; i < 100; i++)
+            {
+                Owner o = new Owner {
+                    LastName = lastNames[new Random(i).Next(0, lastNames.Count -1)],
+                    FirstName = Faker.NameFaker.FirstName(),
+                    Address = Faker.LocationFaker.Street(),
+                    City = Faker.LocationFaker.City(),
+                    Telephone = Faker.PhoneFaker.Phone()
+                };
+                context.Owners.Add(o);
 
-            Owner o2 = new Owner { LastName = "Smith", FirstName = "John", Address = "1600 Villa St", City = "San Jose", Telephone = "408-555-1212" };
-            context.Owners.Add(o2);
+                int maxPets = new Random(i).Next(1, 4);
+                for (int j = 0; j < maxPets; j++ )
+                {
+                    Pet p = new Pet { Name = Faker.NameFaker.FirstName(), BirthDate = Faker.DateTimeFaker.BirthDay(1,5)};
+                    p.Owner = o;
+                    p.PetType = cat;
 
-            
-            Pet p1 = new Pet { Name = "Dunky", BirthDate = DateTime.Now, PetTypeId = cat.Id };
-            p1.PetType = cat;
-            p1.Owner = o1;
-
-
-            Pet p2 = new Pet { Name = "Dunky", BirthDate = DateTime.Now, PetTypeId = cat.Id };
-            p2.PetType = dog;
-            p2.Owner = o2;
-
-            context.Pets.Add(p1);
-            context.Pets.Add(p2);
+                    context.Pets.Add(p);
+                }
+            }
             
             context.SaveChanges();
         }
