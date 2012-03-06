@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Weather Index</h2>
+
+<ul>
+@foreach ( String msg in ViewBag.Forecasts )
+{
+<li>@msg</li>
+}
+</ul>
