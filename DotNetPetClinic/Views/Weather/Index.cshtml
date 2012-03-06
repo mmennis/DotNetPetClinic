@@ -4,4 +4,9 @@
 
 <h2>Weather Index</h2>
 
-<h2>@ViewBag.Message</h2>
+<ul>
+@foreach ( String msg in ViewBag.Forecasts )
+{
+<li>@msg</li>
+}
+</ul>
