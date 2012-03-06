@@ -3,6 +3,13 @@
 }
 
 <h2>@ViewBag.Message</h2>
+
+<ul>
+    <li>@Html.ActionLink("Owners", "Index", new { controller = "Owner", action = "Index" })</li>
+    <li>@Html.ActionLink("Vets", "Index", new { controller = "Vet", action = "Index" })</li>
+    <li></li>
+</ul>
+
 <p>
     To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
 </p>
