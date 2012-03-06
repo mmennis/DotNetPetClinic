@@ -1,49 +1,55 @@
 ﻿@model DotNetPetClinic.Models.Owner
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.FirstName + " " + Model.LastName;
 }
 
-<h2>Details</h2>
+<h2>Owner Information</h2>
 
-<fieldset>
-    <legend>Owner</legend>
+<table>
+    <tr>
+        <td>Name</td>
+        <td>@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</td>
+    </tr>
+    <tr>
+        <td>Address</td>
+        <td>@Html.DisplayFor(model => model.Address)</td>
+    </tr>
+    <tr>
+        <td>City</td>
+        <td>@Html.DisplayFor(model => model.City)</td>
+    </tr>
+    <tr>
+        <td>Telephone</td>
+        <td>@Html.DisplayFor(model => model.Telephone)</td>
+    </tr>
+</table>
 
-    <div class="display-label">LastName</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.LastName)
-    </div>
+<h3>Pets</h3>
+@foreach (DotNetPetClinic.Models.Pet p in Model.Pets)   
+{
+<table>
+    <tr valign="top">
+        <td>
+            <table>
+                <tr>
+                    <td>Name</td>
+                    <td>@p.Name</td>
+                </tr>
+                <tr>
+                    <td>Birthdate</td>
+                    <td>@p.BirthDate</td>
+                </tr>
+                <tr>
+                    <td>Type</td>
+                    <td>@p.PetType.Name</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>    
+}
 
-    <div class="display-label">FirstName</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.FirstName)
-    </div>
-
-    <div class="display-label">Address</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Address)
-    </div>
-
-    <div class="display-label">City</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.City)
-    </div>
-
-    <div class="display-label">Telephone</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Telephone)
-    </div>
-
-    <div class="display-label">Pets</div>
-    <div>
-        <ul>
-        @foreach (DotNetPetClinic.Models.Pet p in Model.Pets)
-        {
-            <li>@p.Name</li>
-        }
-        </ul>
-    </div>
-</fieldset>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")

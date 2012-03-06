@@ -12,10 +12,7 @@
 <table>
     <tr>
         <th>
-            LastName
-        </th>
-        <th>
-            FirstName
+            Name
         </th>
         <th>
             Address
@@ -35,10 +32,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
+            @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Address)

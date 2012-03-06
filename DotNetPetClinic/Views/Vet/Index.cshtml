@@ -12,10 +12,7 @@
 <table>
     <tr>
         <th>
-            FirstName
-        </th>
-        <th>
-            LastName
+            Name
         </th>
         <th>
             Specialties
@@ -26,10 +23,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
+            @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)
         </td>
         <td>
         @foreach (DotNetPetClinic.Models.Specialty s in item.Specialties)
