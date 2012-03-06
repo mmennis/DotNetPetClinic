@@ -13,7 +13,14 @@ namespace DotNetPetClinic.Models
         public DbSet<Owner> Owners { get; set; }
         public DbSet<Pet> Pets { get; set; }
         public DbSet<PetType> PetTypes { get; set; }
-        public DbSet<Visit> Visits { get; set; }   
+        public DbSet<Visit> Visits { get; set; }
+        public DbSet<Vet> Vets { get; set; }
+        public DbSet<Specialty> Specialties { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Vet>().HasMany(v => v.Specialties).WithMany(s => s.Vets);
+        }
     }
 
     public class PetClinicInitializer : DropCreateDatabaseAlways<PetClinicContext>
@@ -62,6 +69,34 @@ namespace DotNetPetClinic.Models
                 }
             }
             
+            context.SaveChanges();
+
+            var specialtyNames = new string[] { "dentistry", "dermatology", "emergency", 
+                                                "imaging", "radiology", "surgery", "vision"};
+
+            List<Specialty> specialties = new List<Specialty>();
+            foreach (string specialtyName in specialtyNames)
+            {
+                Specialty s = new Specialty { Name = specialtyName };
+                specialties.Add(s);
+                context.Specialties.Add(s);
+            }
+            context.SaveChanges();
+
+            for (int m = 0; m < 100; m++)
+            {
+                Vet v = new Vet { LastName = Faker.NameFaker.LastName(), 
+                                  FirstName = Faker.NameFaker.FirstName(),
+                                  Specialties = new List<Specialty>()};
+                int specialtyCount = rand.Next(1,5);
+                for (int n = 0; n < specialtyCount; n++)
+                {
+                    Specialty s = specialties[rand.Next(specialties.Count)];
+                    v.Specialties.Add(s);
+                }
+                context.Vets.Add(v);
+            }
+
             context.SaveChanges();
         }
     }
