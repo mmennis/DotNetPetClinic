@@ -25,6 +25,10 @@ namespace DotNetPetClinic.Models
 
     public class PetClinicInitializer : DropCreateDatabaseAlways<PetClinicContext>
     {
+
+        int OWNERS_COUNT = 100;
+        int VETS_COUNT = 100;
+
         protected override void Seed(PetClinicContext context)
         {
             base.Seed(context);
@@ -48,7 +52,7 @@ namespace DotNetPetClinic.Models
                 lastNames.Add(Faker.NameFaker.LastName());
             }
 
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < OWNERS_COUNT; i++)
             {
                 Owner o = new Owner {
                     LastName = lastNames[rand.Next(lastNames.Count)],
@@ -66,6 +70,13 @@ namespace DotNetPetClinic.Models
                     p.Owner = o;
                     p.PetType = petTypes[rand.Next(petTypes.Count)];
                     context.Pets.Add(p);
+
+                    for (int k = 0; k < 2; k++)
+                    {
+                        Visit visit = new Visit { VisitDate = Faker.DateTimeFaker.DateTime(), Description = Faker.TextFaker.Sentences(3) };
+                        visit.Pet = p;
+                        context.Visits.Add(visit);
+                    }
                 }
             }
             
@@ -83,7 +94,7 @@ namespace DotNetPetClinic.Models
             }
             context.SaveChanges();
 
-            for (int m = 0; m < 100; m++)
+            for (int m = 0; m < VETS_COUNT; m++)
             {
                 Vet v = new Vet { LastName = Faker.NameFaker.LastName(), 
                                   FirstName = Faker.NameFaker.FirstName(),

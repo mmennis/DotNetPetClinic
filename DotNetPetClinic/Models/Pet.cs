@@ -16,5 +16,7 @@ namespace DotNetPetClinic.Models
 
         public int OwnerId { get; set; }
         public virtual Owner Owner { get; set; }
+
+        public virtual ICollection<Visit> Visits { get; set; }
     }
 }

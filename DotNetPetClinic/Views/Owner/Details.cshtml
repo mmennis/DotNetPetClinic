@@ -45,6 +45,23 @@
                     <td>@p.PetType.Name</td>
                 </tr>
             </table>
+            <td valign="top">
+                <table>
+                    <tr>
+                        <thead>
+                            <th>Visit Date</th>
+                            <th>Description</th>
+                        </thead>
+                        @foreach (DotNetPetClinic.Models.Visit visit in p.Visits)
+                        {
+                            <tr>
+                                <td>@visit.VisitDate</td>
+                                <td>@visit.Description</td>
+                            </tr>
+                        }
+                    </tr>
+                </table>
+            </td>
         </td>
     </tr>
 </table>    
