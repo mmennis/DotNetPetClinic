@@ -33,7 +33,11 @@ namespace DotNetPetClinic
 
         protected void Application_Start()
         {
-            Database.SetInitializer<PetClinicContext>(new PetClinicInitializer());
+            if (System.Configuration.ConfigurationManager.AppSettings["DropAndCreateDatabaseOnStartup"] == "1")
+            {
+                // Runs initializer to drop and recreate database when application is restarted.
+                Database.SetInitializer<PetClinicContext>(new PetClinicInitializer());
+            }
 
             AreaRegistration.RegisterAllAreas();
 
