@@ -26,8 +26,8 @@ namespace DotNetPetClinic.Models
     public class PetClinicInitializer : DropCreateDatabaseAlways<PetClinicContext>
     {
 
-        int OWNERS_COUNT = 100;
-        int VETS_COUNT = 100;
+        int OWNERS_COUNT = 500;
+        int VETS_COUNT = 500;
 
         protected override void Seed(PetClinicContext context)
         {
