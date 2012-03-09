@@ -16,9 +16,24 @@ namespace DotNetPetClinic.Controllers
         //
         // GET: /Owner/
 
-        public ViewResult Index()
+        public ViewResult Index(string searchString)
         {
-            return View(db.Owners.ToList());
+            var owners = from o in db.Owners
+                             select o;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                owners = owners.Where( o => o.LastName.ToUpper().Contains( searchString.ToUpper() ) );
+            }
+
+            return View(owners.ToList());
+        }
+
+        //
+        // GET: /Owner/FindOwners
+
+        public ViewResult FindOwners()
+        {
+            return View();
         }
 
         //

@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "FindOwners";
+}
+
+<h2>FindOwners</h2>
+
+@using (@Html.BeginForm("Index", "Owner"))
+{
+    <p>
+        Find by last name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" /> 
+    </p>
+}
